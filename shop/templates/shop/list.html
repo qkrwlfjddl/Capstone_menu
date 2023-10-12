@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Duksung{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col- ">
+            <div class="list-group mt-4" >
+                <a href="/" class="list-group-item  {% if not current_category %}list-group-item-action{% endif %}" style="color: #900034 ">전체 메뉴</a>
+                {% for c in categories %}
+                <a href="{{ c.get_absolute_url }}" class="list-group-item list-group-item-action {% if current_category.slug == c.slug %}list-group-item-action{% endif %}">{{ c.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col mt-3">
+            <div class="alert alert " role="alert" style="color: #900034; font-weight:bold" >
+                <h5>{% if current_category %}{{ current_category.name }}{% else %}전체 메뉴{% endif %}</h5>
+            </div>
+            <div class="row">
+                {% for product in products %}
+                <div class="col-4">
+                    <a href="{{ product.get_absolute_url }}" class="btn" style="text-align: center;">
+                        <div class="card" style="width: 180px; height: 250px;">
+                            <div class="image-container" style="width: 100%; height: 110px; overflow: hidden;">
+                                {% if product.image %}
+                                    <img class="card-img-top" src="{{ product.image.url }}" alt="Product Image" style="object-fit: cover; width: 100%; height: 100%;">
+                                {% endif %}
+                            </div>
+                            <div class="card-body" style="background-color: rgba(248, 215, 218, 0.2);">
+                                <h5 class="card-title" style="font-weight: bold; text-align: center; margin-bottom:2px;">{{ product.name }}</h5>
+                                <h7>대기인원
+                                    {% for item in waiting_people %}
+                                        {% if item.product == product %}
+                                        <span style="color: #900034;">{{ item.people_total }}</span>명
+                                        <br>
+                                        대기시간<span style="color: #900034;"> {{ item.waiting_time }}</span>분
+                                        {% endif %}
+                                    {% endfor %}
+                                </h7>
+                                <h3><span class="badge badge-light" style="color: #900034; background-color: transparent; ">{{ product.price }}원</span></h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

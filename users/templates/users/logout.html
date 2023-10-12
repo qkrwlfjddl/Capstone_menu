@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <h2>LOGOUT</h2>
+        <p><h3>로그아웃 하시겠습니까?</h3></p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-dark" style="background-color: #900034;">Logout</button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}주문 내역{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 style="color: #900034;">주문 내역</h2>
+    <table class="table mt-4 " style="background-color: rgb(248, 215, 218) ; text-align: center;">
+        <thead>
+            <tr>
+                <th>주문번호</th>
+                <th>주문상태</th>
+                <th>주문시간</th>
+                <th>메뉴</th>
+                <th>가격</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for order in orders %}
+            <tr>
+                <td style="font-weight: bold; font-size: 16px; color: #9B111E;">
+                    {{ order.id }}</td>
+                <td style="color: {% if order.status == '조리중' %}#2B79CC{% else %}#9B111E{% endif %};">{{ order.status}}</td>
+                <td>{{ order.created|date:"Y-m-d" }}</td>
+                <td>
+                    {% for item in order.items.all %}
+                        {{ item.product.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ order.get_total_price }}원</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">주문 내역이 없습니다.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{%endblock%}
