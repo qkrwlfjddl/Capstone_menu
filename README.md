@@ -1,4 +1,5 @@
 # 미니 캡스톤 학식 시스템 홈페이지 제작 
 
 
-![image](https://github.com/qkrwlfjddl/Capstone_menu/assets/139184027/2d1c6e6c-6101-4ffd-915e-bad5c04e1f0e)
+![시연영상_주문자](https://github.com/qkrwlfjddl/Capstone_menu/assets/139184027/7ee2d849-a981-4f36-b479-439e0ff2c610)
+
